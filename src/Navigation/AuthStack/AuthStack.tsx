@@ -12,10 +12,10 @@ import { SignIn, SignUp } from '.'
 const Tab = createMaterialTopTabNavigator();
 
 interface Props {
-    navigation: any //TODO:
+
 }
 
-const Authorization: React.FC<Props> = ({ navigation }) => {
+const AuthStack: React.FC<Props> = ({ }) => {
 
     return (
         <View style={styles.container}>
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Authorization;
+export default AuthStack;

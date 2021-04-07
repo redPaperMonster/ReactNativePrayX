@@ -31,7 +31,6 @@ const SignIn = () => {
                                 <View>
                                     <Text>Your name</Text>
                                     <InputField
-                                        //name={props.input.name}
                                         meta={props.meta}
                                         input={props.input}
                                         placeholder="HERE!"

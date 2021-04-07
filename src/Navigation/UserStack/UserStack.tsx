@@ -4,28 +4,31 @@ import {
     View,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { MyDesk, PrayerDetails, TaskScreen } from '.';
 import { createStackNavigator } from '@react-navigation/stack'
-import { UserStack, AuthStack } from '.';
 
-const MainNavigation = () => {
 
+const UserStack = () => {
     const Stack = createStackNavigator();
     return (
         <View>
             <NavigationContainer>
                 <View style={styles.sectionContainer}>
-                    <Stack.Navigator initialRouteName="AuthStack">
+                    <Stack.Navigator initialRouteName="MyDesk">
                         <Stack.Screen
-                            name="AuthStack"
-                            component={AuthStack}
+                            name="MyDesk"
+                            component={MyDesk}
                         />
                         <Stack.Screen
-                            name="UserStack"
-                            component={UserStack}
-                            options={{ headerShown: false }} />
-                    </Stack.Navigator></View>
+                            name="TaskScreen"
+                            component={TaskScreen}
+                        />
+                        <Stack.Screen
+                            name="PrayerDetails"
+                            component={PrayerDetails} />
+                    </Stack.Navigator>
+                </View>
             </NavigationContainer>
-
         </View>
     );
 };
@@ -47,4 +50,4 @@ const styles = StyleSheet.create({
         fontWeight: '700',
     },
 });
-export default MainNavigation;
+export default UserStack;
