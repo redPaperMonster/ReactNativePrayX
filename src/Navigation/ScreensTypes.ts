@@ -1,28 +1,41 @@
 import {RouteProp} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {MaterialTopTabNavigationProp} from '@react-navigation/material-top-tabs';
+import {authRoutes, RootRoutes, userRoutes} from './routes';
 
 export type RootStackParamList = {
-  Authorization: undefined;
+  AuthStack: undefined;
   UserStack: undefined;
 };
 
-export type AuthProps = StackScreenProps<RootStackParamList, 'Authorization'>;
-export type UserStackProps = StackScreenProps<RootStackParamList, 'UserStack'>;
+export type AuthProps = StackScreenProps<
+  RootStackParamList,
+  RootRoutes.AuthStack
+>;
+export type UserStackProps = StackScreenProps<
+  RootStackParamList,
+  RootRoutes.UserStack
+>;
 
 export type UserStackParamList = {
-  MyDesk: undefined;
-  TaskScreen: undefined;
-  PrayerDetails: undefined;
+  DeskDashboard: undefined;
+  TaskListScreen: undefined;
+  TaskDetailsScreen: undefined;
 };
 
-export type MyDeskProps = StackScreenProps<UserStackParamList, 'MyDesk'>;
-
-export type TaskProps = StackScreenProps<UserStackParamList, 'TaskScreen'>;
-
-export type PrayerDetailsProps = StackScreenProps<
+export type DeskDashboardProps = StackScreenProps<
   UserStackParamList,
-  'PrayerDetails'
+  userRoutes.DeskDashboard
+>;
+
+export type TaskListScreenProps = StackScreenProps<
+  UserStackParamList,
+  userRoutes.TaskListScreen
+>;
+
+export type TaskDetailsProps = StackScreenProps<
+  UserStackParamList,
+  userRoutes.TaskDetailsScreen
 >;
 
 export type TabsStackParamList = {
@@ -32,10 +45,10 @@ export type TabsStackParamList = {
 
 export type SingInNavigationProp = MaterialTopTabNavigationProp<
   TabsStackParamList,
-  'SignIn'
+  authRoutes.SignIn
 >;
 
-export type SignInRouteProp = RouteProp<TabsStackParamList, 'SignIn'>;
+export type SignInRouteProp = RouteProp<TabsStackParamList, authRoutes.SignIn>;
 
 export type SignInProps = {
   navigation: SingInNavigationProp;
@@ -44,10 +57,10 @@ export type SignInProps = {
 
 export type SingUpNavigationProp = MaterialTopTabNavigationProp<
   TabsStackParamList,
-  'SignUp'
+  authRoutes.SignUp
 >;
 
-export type SignUpRouteProp = RouteProp<TabsStackParamList, 'SignUp'>;
+export type SignUpRouteProp = RouteProp<TabsStackParamList, authRoutes.SignUp>;
 
 export type SignUpProps = {
   navigation: SingUpNavigationProp;

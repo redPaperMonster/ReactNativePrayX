@@ -3,6 +3,7 @@ import {Field, Form} from 'react-final-form';
 import {Button, Text, View} from 'react-native';
 import {InputField} from '../../../Components';
 import {signIn, fieldRequired} from '../../../Utils';
+import {RootRoutes} from '../../routes';
 import {SignUpProps} from '../../ScreensTypes';
 import {SignUpStyles} from './SignUpStyles';
 
@@ -14,7 +15,6 @@ interface Values {
 const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
   const handleSubmit = (values: Values) => {
     signIn(values.email, values.password);
-    navigation.dangerouslyGetParent()?.navigate('UserStack');
   };
 
   return (
@@ -46,11 +46,6 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
           </View>
         )}
       </Form>
-      <Button
-        title="next"
-        onPress={() =>
-          navigation.dangerouslyGetParent()?.navigate('UserStack')
-        }></Button>
     </View>
   );
 };

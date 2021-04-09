@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {UserStack, AuthStack} from '.';
 import {MainNavigationStyles} from './MainNavigationStyles';
 import {RootStackParamList} from './ScreensTypes';
+import {RootRoutes} from './routes';
 
 const MainNavigation = () => {
   const Stack = createStackNavigator<RootStackParamList>();
@@ -12,10 +13,10 @@ const MainNavigation = () => {
     <View>
       <NavigationContainer>
         <View style={MainNavigationStyles.sectionContainer}>
-          <Stack.Navigator initialRouteName="Authorization">
-            <Stack.Screen name="Authorization" component={AuthStack} />
+          <Stack.Navigator initialRouteName={RootRoutes.AuthStack}>
+            <Stack.Screen name={RootRoutes.AuthStack} component={AuthStack} />
             <Stack.Screen
-              name="UserStack"
+              name={RootRoutes.UserStack}
               component={UserStack}
               options={{headerShown: false}}
             />

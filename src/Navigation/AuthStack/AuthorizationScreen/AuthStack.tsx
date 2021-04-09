@@ -1,10 +1,11 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {SignIn, SignUp} from '..';
 import {AuthStackStyles} from './AuthStackStyles';
 import {AuthProps, TabsStackParamList} from '../../ScreensTypes';
+import {authRoutes} from '../../routes';
 
 const Tab = createMaterialTopTabNavigator<TabsStackParamList>();
 
@@ -19,8 +20,8 @@ const AuthStack: React.FC<AuthProps> = ({route, navigation}) => {
       </View>
       <View style={AuthStackStyles.tabContainer}>
         <Tab.Navigator>
-          <Tab.Screen name="SignIn" component={SignIn} />
-          <Tab.Screen name="SignUp" component={SignUp} />
+          <Tab.Screen name={authRoutes.SignIn} component={SignIn} />
+          <Tab.Screen name={authRoutes.SignUp} component={SignUp} />
         </Tab.Navigator>
       </View>
     </View>

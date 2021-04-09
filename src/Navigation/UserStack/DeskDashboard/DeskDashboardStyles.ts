@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const MyDeskStyles = StyleSheet.create({
+export const DeskDashboardStyles = StyleSheet.create({
   sectionText: {
     fontSize: 17,
     fontWeight: '600',

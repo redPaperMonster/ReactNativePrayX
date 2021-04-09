@@ -19,7 +19,6 @@ interface Values {
 const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
   const handleSubmit = (values: Values) => {
     signUp(values.name, values.email, values.password);
-    navigation.dangerouslyGetParent()?.navigate('UserStack');
   };
 
   return (

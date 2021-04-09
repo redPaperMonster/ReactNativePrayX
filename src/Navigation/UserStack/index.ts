@@ -1,4 +1,4 @@
-export {default as MyDesk} from './MyDesk/MyDesk';
-export {default as TaskScreen} from './Task/Task';
-export {default as PrayerDetails} from './PrayerDetails/PrayerDetails';
+export {default as DeskDashboard} from './DeskDashboard/DeskDashboard';
+export {default as TaskListScreen} from './TaskListScreen/TaskListScreen';
+export {default as TaskDetails} from './TaskDetails/TaskDetails';
 export {default as UserStack} from './UserStack/UserStack';
