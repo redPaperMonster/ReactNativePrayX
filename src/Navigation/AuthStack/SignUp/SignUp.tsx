@@ -1,78 +1,58 @@
 import React from 'react';
-import { Field, Form } from 'react-final-form';
-import {
-    Button,
-    StyleSheet,
-    Text,
-    View
-} from 'react-native';
-import { InputField } from '../../../../Components';
-import {
-    signIn,
-    fieldRequired
-} from '../../../../Utils';
+import {Field, Form} from 'react-final-form';
+import {Button, Text, View} from 'react-native';
+import {InputField} from '../../../Components';
+import {signIn, fieldRequired} from '../../../Utils';
+import {SignUpProps} from '../../ScreensTypes';
+import {SignUpStyles} from './SignUpStyles';
 
 interface Values {
-    email: string,
-    password: string
-}
-interface Props {
-    navigation: any
+  email: string;
+  password: string;
 }
 
-const SignUp: React.FC<Props> = ({ navigation }) => {
+const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
+  const handleSubmit = (values: Values) => {
+    signIn(values.email, values.password);
+    navigation.dangerouslyGetParent()?.navigate('UserStack');
+  };
 
-    const handleSubmit = (values: Values) => {
-        signIn(values.email, values.password);
-        navigation.navigate('MainScreen');
-    }
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Form onSubmit={handleSubmit}>
-                {({ handleSubmit }) => (
-                    <View>
-                        <Field
-                            name="email"
-                            validate={fieldRequired}>
-                            {(props) => (
-                                <View>
-                                    <Text>Your email</Text>
-                                    <InputField
-                                        keyboardType="email-address"
-                                        placeholder="HERE!"
-                                        meta={props.meta}
-                                        input={props.input}
-                                    />
-                                </View>
-                            )}
-                        </Field>
-                        <Field
-                            name="password"
-                            validate={fieldRequired}>
-                            {(props) => (
-                                <View>
-                                    <Text>Your password</Text>
-                                    <InputField
-                                        placeholder="HERE!"
-                                        meta={props.meta}
-                                        input={props.input}
-                                    />
-                                </View>
-                            )}
-                        </Field>
-                        <Button
-                            title="submit"
-                            onPress={handleSubmit}></Button>
-                    </View>
-                )}
-            </Form>
-            <Button title="next" onPress={() => navigation.navigate('MainScreen')}></Button>
-        </View>
-    );
+  return (
+    <View style={SignUpStyles.container}>
+      <Form onSubmit={handleSubmit}>
+        {({handleSubmit}) => (
+          <View>
+            <Field name="email" validate={fieldRequired}>
+              {props => (
+                <View>
+                  <Text>Your email</Text>
+                  <InputField
+                    keyboardType="email-address"
+                    placeholder="HERE!"
+                    {...props}
+                  />
+                </View>
+              )}
+            </Field>
+            <Field name="password" validate={fieldRequired}>
+              {props => (
+                <View>
+                  <Text>Your password</Text>
+                  <InputField placeholder="HERE!" {...props} />
+                </View>
+              )}
+            </Field>
+            <Button title="submit" onPress={handleSubmit}></Button>
+          </View>
+        )}
+      </Form>
+      <Button
+        title="next"
+        onPress={() =>
+          navigation.dangerouslyGetParent()?.navigate('UserStack')
+        }></Button>
+    </View>
+  );
 };
-
-const styles = StyleSheet.create({
-
-})
 
 export default SignUp;
