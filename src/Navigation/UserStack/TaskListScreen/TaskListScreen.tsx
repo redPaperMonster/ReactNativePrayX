@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {TaskListScreenProps} from '../../ScreensTypes';
+import {TaskListProps} from '../../ScreensTypes';
 
-const TaskListScreen: React.FC<TaskListScreenProps> = ({navigation, route}) => {
+const TaskList: React.FC<TaskListProps> = ({navigation, route}) => {
   return (
     <View>
       <Text>TaskList Here!</Text>
@@ -10,4 +10,4 @@ const TaskListScreen: React.FC<TaskListScreenProps> = ({navigation, route}) => {
   );
 };
 
-export default TaskListScreen;
+export default TaskList;

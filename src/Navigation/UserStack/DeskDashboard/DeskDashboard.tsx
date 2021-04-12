@@ -16,13 +16,11 @@ const DeskDashboard: React.FC<DeskDashboardProps> = ({navigation, route}) => {
       </View>
       <View style={DeskDashboardStyles.todoContainer}></View>
       <Button
-        title="open some TaskListScreen"
-        onPress={() => navigation.navigate(userRoutes.TaskListScreen)}></Button>
+        title="open some TaskList"
+        onPress={() => navigation.navigate(userRoutes.TaskList)}></Button>
       <Button
         title="open Task details"
-        onPress={() =>
-          navigation.navigate(userRoutes.TaskDetailsScreen)
-        }></Button>
+        onPress={() => navigation.navigate(userRoutes.TaskDetails)}></Button>
     </View>
   );
 };

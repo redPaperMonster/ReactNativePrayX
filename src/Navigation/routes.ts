@@ -1,7 +1,7 @@
 export enum userRoutes {
   DeskDashboard = 'DeskDashboard',
-  TaskListScreen = 'TaskListScreen',
-  TaskDetailsScreen = 'TaskDetailsScreen',
+  TaskList = 'TaskList',
+  TaskDetails = 'TaskDetails',
 }
 
 export enum authRoutes {

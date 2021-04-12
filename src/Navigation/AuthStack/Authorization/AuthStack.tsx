@@ -2,7 +2,8 @@ import React from 'react';
 import {Text, View} from 'react-native';
 
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {SignIn, SignUp} from '..';
+import SignIn from '../SignIn/SignIn';
+import SignUp from '../SignUp/SignUp';
 import {AuthStackStyles} from './AuthStackStyles';
 import {AuthProps, TabsStackParamList} from '../../ScreensTypes';
 import {authRoutes} from '../../routes';
