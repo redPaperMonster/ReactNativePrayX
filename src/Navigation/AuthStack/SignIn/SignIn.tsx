@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
-import {Button, Text, View} from 'react-native';
-import {InputField} from '../../../Components';
+import {Text, View} from 'react-native';
+import {InputField, CustomButton} from '../../../Components';
 import {
   emailValidate,
   signUp,
@@ -30,19 +30,22 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
             <Field name="name" validate={nameValidation}>
               {props => (
                 <View>
-                  <Text>Your name</Text>
-                  <InputField {...props} placeholder="HERE!" />
+                  <InputField
+                    {...props}
+                    label="Your name"
+                    customStyle={{borderBottomWidth: 1}}
+                  />
                 </View>
               )}
             </Field>
             <Field name="email" validate={emailValidate}>
               {props => (
                 <View>
-                  <Text>Your email</Text>
                   <InputField
                     keyboardType="email-address"
-                    placeholder="HERE!"
+                    label="Your email"
                     {...props}
+                    customStyle={{borderBottomWidth: 1}}
                   />
                 </View>
               )}
@@ -50,12 +53,15 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
             <Field name="password" validate={passwordValidation}>
               {props => (
                 <View>
-                  <Text>Your password</Text>
-                  <InputField placeholder="HERE!" {...props} />
+                  <InputField
+                    {...props}
+                    label="Your password"
+                    customStyle={{borderBottomWidth: 1}}
+                  />
                 </View>
               )}
             </Field>
-            <Button title="submit" onPress={handleSubmit}></Button>
+            <CustomButton onPress={handleSubmit} title="Sign in" />
           </View>
         )}
       </Form>

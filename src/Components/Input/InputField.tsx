@@ -1,42 +1,52 @@
-import React, { Props } from 'react';
-import { FieldInputProps, FieldMetaState, FieldRenderProps } from 'react-final-form';
+import React from 'react';
+import {FieldRenderProps} from 'react-final-form';
 import {
-    KeyboardTypeOptions,
-    StyleSheet,
-    Text,
-    View,
-    TextInput
+  KeyboardTypeOptions,
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  StyleProp,
+  TextStyle,
 } from 'react-native';
-
+import {InputFieldStyles} from './InputFieldStyles';
 
 interface InputProps extends FieldRenderProps<string> {
-    meta: FieldMetaState<string>;
-    input: FieldInputProps<string, HTMLElement>;
-    placeholder?: string,
-    keyboardType?: KeyboardTypeOptions
+  keyboardType?: KeyboardTypeOptions;
+  label?: string;
+  placeholder?: string;
+  customStyle?: TextStyle;
 }
 
-const InputField: React.FC<InputProps> = ({ input, meta, placeholder, keyboardType }) => {
-    return (
-        <View >
-            <TextInput
-                placeholder={placeholder}
-                keyboardType={keyboardType}
-                onChangeText={input.onChange} />
-            {meta && meta.touched && meta.error && (
-                <Text >{meta.error}</Text>
-            )
-            }
-        </View >
-    );
-};
+const InputField: React.FC<InputProps> = ({
+  input,
+  meta,
+  keyboardType,
+  label,
+  placeholder = '',
+  customStyle = InputFieldStyles.input,
+}) => {
+  const combinedStyles: StyleProp<TextStyle> = StyleSheet.compose(
+    InputFieldStyles.input,
+    customStyle,
+  );
 
-const styles = StyleSheet.create({
-    sectionText: {
-        fontSize: 10,
-        textAlign: 'center',
-        color: 'red',
-    },
-})
+  return (
+    <View style={InputFieldStyles.container}>
+      {label && <Text style={InputFieldStyles.label}>{label}</Text>}
+      <View style={InputFieldStyles.inputWrapper}>
+        <TextInput
+          style={combinedStyles}
+          keyboardType={keyboardType}
+          onChangeText={input.onChange}
+          placeholder={placeholder}
+        />
+      </View>
+      {meta && meta.touched && meta.error && (
+        <Text style={InputFieldStyles.errorText}>{meta.error}</Text>
+      )}
+    </View>
+  );
+};
 
 export default InputField;

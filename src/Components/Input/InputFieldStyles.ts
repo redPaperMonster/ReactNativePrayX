@@ -1,24 +1,25 @@
-// import styled from 'styled-components/native';
+import {StyleSheet} from 'react-native';
+import {AppColors} from '../../Utils';
 
-// export const CommonInput = styled.TextInput`
-// background-color: white;
-// padding: 0;
-// font-size: 15
-// `;
-
-// export const ErrorText = styled.Text`
-//   line-height: 32px;
-//   color: #800;
-//   font-weight: bold;
-// `;
-
-import { StyleSheet } from "react-native";
-
-export const MainNavigationStyles = StyleSheet.create({
-  sectionContainer: {
-    flexDirection: "column",
-    justifyContent: 'center',
-    height: '100%',
-    backgroundColor: '#FFFFFF'
+export const InputFieldStyles = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+  },
+  input: {
+    padding: 0,
+    color: AppColors.red,
+  },
+  errorText: {
+    fontWeight: 'bold',
+    color: AppColors.red,
+    textAlign: 'center',
+  },
+  inputWrapper: {
+    marginBottom: 5,
+  },
+  label: {
+    fontWeight: 'bold',
+    color: AppColors.black,
+    textAlign: 'center',
   },
 });
