@@ -5,17 +5,16 @@ import {
   Text,
   View,
   TextInput,
-  StyleSheet,
-  StyleProp,
-  TextStyle,
+  ViewStyle,
 } from 'react-native';
-import {InputFieldStyles} from './InputFieldStyles';
+import style from './InputFieldStyles';
 
 interface InputProps extends FieldRenderProps<string> {
   keyboardType?: KeyboardTypeOptions;
   label?: string;
   placeholder?: string;
-  customStyle?: TextStyle;
+  customStyle?: ViewStyle | ViewStyle[];
+  icon?: Element;
 }
 
 const InputField: React.FC<InputProps> = ({
@@ -24,26 +23,23 @@ const InputField: React.FC<InputProps> = ({
   keyboardType,
   label,
   placeholder = '',
-  customStyle = InputFieldStyles.input,
+  customStyle,
+  icon,
 }) => {
-  const combinedStyles: StyleProp<TextStyle> = StyleSheet.compose(
-    InputFieldStyles.input,
-    customStyle,
-  );
-
   return (
-    <View style={InputFieldStyles.container}>
-      {label && <Text style={InputFieldStyles.label}>{label}</Text>}
-      <View style={InputFieldStyles.inputWrapper}>
+    <View style={style.container}>
+      {label && <Text style={style.label}>{label}</Text>}
+      <View style={style.inputWrapper}>
+        <View style={style.icon}>{icon}</View>
         <TextInput
-          style={combinedStyles}
+          style={[style.input, customStyle]}
           keyboardType={keyboardType}
           onChangeText={input.onChange}
           placeholder={placeholder}
         />
       </View>
       {meta && meta.touched && meta.error && (
-        <Text style={InputFieldStyles.errorText}>{meta.error}</Text>
+        <Text style={style.errorText}>{meta.error}</Text>
       )}
     </View>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
-import {Button, Text, View} from 'react-native';
-import {InputField} from '../../../Components';
+import {View} from 'react-native';
+import {Button, InputField} from '../../../Components';
 import {signIn, fieldRequired} from '../../../Utils';
 import {SignUpProps} from '../../ScreensTypes';
-import {SignUpStyles} from './SignUpStyles';
+import style from './SignUpStyles';
 
 interface Values {
   email: string;
@@ -18,18 +18,18 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
   };
 
   return (
-    <View style={SignUpStyles.container}>
+    <View style={style.container}>
       <Form onSubmit={handleSubmit}>
         {({handleSubmit}) => (
           <View>
             <Field name="email" validate={fieldRequired}>
               {props => (
                 <View>
-                  <Text>Your email</Text>
                   <InputField
+                    label="Your email"
                     keyboardType="email-address"
-                    placeholder="HERE!"
                     {...props}
+                    customStyle={{borderBottomWidth: 1}}
                   />
                 </View>
               )}
@@ -37,12 +37,15 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
             <Field name="password" validate={fieldRequired}>
               {props => (
                 <View>
-                  <Text>Your password</Text>
-                  <InputField placeholder="HERE!" {...props} />
+                  <InputField
+                    label="Your password"
+                    {...props}
+                    customStyle={{borderBottomWidth: 1}}
+                  />
                 </View>
               )}
             </Field>
-            <Button title="submit" onPress={handleSubmit}></Button>
+            <Button onPress={handleSubmit} title="Sign up" />
           </View>
         )}
       </Form>

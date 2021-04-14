@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
-export const MainNavigationStyles = StyleSheet.create({
-  sectionContainer: {
+export default StyleSheet.create({
+  container: {
     flexDirection: 'column',
     justifyContent: 'center',
     height: '100%',

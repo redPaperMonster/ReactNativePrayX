@@ -1,9 +1,11 @@
 import {StyleSheet} from 'react-native';
 
-export const SignUpStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingTop: 60,
+    backgroundColor: '#FFFFFF',
   },
 });

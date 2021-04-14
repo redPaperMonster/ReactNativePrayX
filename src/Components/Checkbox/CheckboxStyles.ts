@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {AppColors} from '../../Utils';
+import {colors} from '../../Utils';
 
-export const CheckboxStyles = StyleSheet.create({
+export default StyleSheet.create({
   checkboxBody: {
-    borderColor: AppColors.black,
+    borderColor: colors.black,
     borderWidth: 2,
     width: 30,
     height: 30,

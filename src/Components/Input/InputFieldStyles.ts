@@ -1,25 +1,31 @@
 import {StyleSheet} from 'react-native';
-import {AppColors} from '../../Utils';
+import {colors} from '../../Utils';
 
-export const InputFieldStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     marginBottom: 16,
   },
   input: {
     padding: 0,
-    color: AppColors.red,
+    color: colors.black,
+    flex: 99,
+    fontFamily: 'PoppinsRegular',
   },
   errorText: {
     fontWeight: 'bold',
-    color: AppColors.red,
+    color: colors.red,
     textAlign: 'center',
   },
   inputWrapper: {
     marginBottom: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   label: {
-    fontWeight: 'bold',
-    color: AppColors.black,
+    color: colors.black,
     textAlign: 'center',
+    fontFamily: 'PoppinsBold',
   },
+  icon: {flex: 1, right: 30},
 });

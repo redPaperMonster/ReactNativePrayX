@@ -1,14 +1,14 @@
 import {StyleSheet} from 'react-native';
-import {AppColors} from '../../Utils';
+import {colors} from '../../Utils';
 
-export const CustomButtonStyles = StyleSheet.create({
+export default StyleSheet.create({
   button: {
-    backgroundColor: AppColors.navigation,
+    backgroundColor: colors.lightBlue,
     marginTop: 5,
     borderRadius: 2,
   },
   text: {
-    color: AppColors.white,
+    color: colors.white,
     marginVertical: 4,
     textAlign: 'center',
     fontSize: 15,

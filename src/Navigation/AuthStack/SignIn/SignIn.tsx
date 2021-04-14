@@ -1,7 +1,8 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
-import {Text, View} from 'react-native';
-import {InputField, CustomButton} from '../../../Components';
+import {View} from 'react-native';
+import MessageIcon from '../../../Assets/icons/Message';
+import {InputField, Button} from '../../../Components';
 import {
   emailValidate,
   signUp,
@@ -9,7 +10,7 @@ import {
   nameValidation,
 } from '../../../Utils';
 import {SignInProps} from '../../ScreensTypes';
-import {SignInStyles} from './SignInStyles';
+import style from './SignInStyles';
 interface Values {
   name: string;
   email: string;
@@ -23,7 +24,7 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
   };
 
   return (
-    <View style={SignInStyles.container}>
+    <View style={style.container}>
       <Form onSubmit={handleSubmit}>
         {({handleSubmit}) => (
           <View>
@@ -34,6 +35,7 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
                     {...props}
                     label="Your name"
                     customStyle={{borderBottomWidth: 1}}
+                    icon={<MessageIcon />}
                   />
                 </View>
               )}
@@ -61,7 +63,7 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
                 </View>
               )}
             </Field>
-            <CustomButton onPress={handleSubmit} title="Sign in" />
+            <Button onPress={handleSubmit} title="Sign in" />
           </View>
         )}
       </Form>

@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import CheckboxIcon from './../../Assets/icons/Checkbox.svg';
-import {CheckboxStyles} from './CheckboxStyles';
-const Checkbox = () => {
-  const [value, setValue] = useState(false);
+import {TouchableOpacity} from 'react-native';
+import {CheckboxIcon} from './../../Assets/icons/';
+import style from './CheckboxStyles';
+
+interface CheckboxProps {
+  checked: boolean;
+  onChange: () => void;
+}
+
+const Checkbox: React.FC<CheckboxProps> = ({checked, onChange}) => {
   return (
     <View>
-      <TouchableOpacity
-        onPress={() => {
-          setValue(!value);
-        }}>
-        <View style={CheckboxStyles.checkboxBody}>
-          {value && (
-            <View style={CheckboxStyles.icon}>
+      <TouchableOpacity onPress={onChange}>
+        <View style={style.checkboxBody}>
+          {checked && (
+            <View style={style.icon}>
               <CheckboxIcon />
             </View>
           )}

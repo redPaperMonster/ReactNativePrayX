@@ -5,4 +5,4 @@ export {
   passwordValidation,
   nameValidation,
 } from './validation';
-export {AppColors} from './colors';
+export {colors} from './colors';
