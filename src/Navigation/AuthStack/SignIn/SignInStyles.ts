@@ -1,9 +1,12 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../../Utils';
 
-export const SignInStyles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingTop: 60,
+    backgroundColor: colors.white,
   },
 });

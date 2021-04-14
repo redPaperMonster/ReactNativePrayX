@@ -1,7 +1,8 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
-import {Button, Text, View} from 'react-native';
-import {InputField} from '../../../Components';
+import {View} from 'react-native';
+import MessageIcon from '../../../Assets/icons/Message';
+import {InputField, Button} from '../../../Components';
 import {
   emailValidate,
   signUp,
@@ -9,7 +10,7 @@ import {
   nameValidation,
 } from '../../../Utils';
 import {SignInProps} from '../../ScreensTypes';
-import {SignInStyles} from './SignInStyles';
+import style from './SignInStyles';
 interface Values {
   name: string;
   email: string;
@@ -23,26 +24,30 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
   };
 
   return (
-    <View style={SignInStyles.container}>
+    <View style={style.container}>
       <Form onSubmit={handleSubmit}>
         {({handleSubmit}) => (
           <View>
             <Field name="name" validate={nameValidation}>
               {props => (
                 <View>
-                  <Text>Your name</Text>
-                  <InputField {...props} placeholder="HERE!" />
+                  <InputField
+                    {...props}
+                    label="Your name"
+                    customStyle={{borderBottomWidth: 1}}
+                    icon={<MessageIcon />}
+                  />
                 </View>
               )}
             </Field>
             <Field name="email" validate={emailValidate}>
               {props => (
                 <View>
-                  <Text>Your email</Text>
                   <InputField
                     keyboardType="email-address"
-                    placeholder="HERE!"
+                    label="Your email"
                     {...props}
+                    customStyle={{borderBottomWidth: 1}}
                   />
                 </View>
               )}
@@ -50,12 +55,15 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
             <Field name="password" validate={passwordValidation}>
               {props => (
                 <View>
-                  <Text>Your password</Text>
-                  <InputField placeholder="HERE!" {...props} />
+                  <InputField
+                    {...props}
+                    label="Your password"
+                    customStyle={{borderBottomWidth: 1}}
+                  />
                 </View>
               )}
             </Field>
-            <Button title="submit" onPress={handleSubmit}></Button>
+            <Button onPress={handleSubmit} title="Sign in" />
           </View>
         )}
       </Form>

@@ -1,17 +1,16 @@
 import {StyleSheet} from 'react-native';
+import {colors} from '../../../Utils';
 
-export const AuthStackStyles = StyleSheet.create({
+export default StyleSheet.create({
   sectionText: {
-    fontSize: 10,
+    fontSize: 20,
     fontWeight: '600',
     textAlign: 'center',
     color: '#514D47',
-    lineHeight: 20,
     marginTop: 40,
+    fontFamily: 'PoppinsRegular',
   },
   container: {
-    marginHorizontal: 20,
-    marginTop: 20,
     flexDirection: 'column',
     justifyContent: 'center',
     height: '100%',
@@ -22,5 +21,11 @@ export const AuthStackStyles = StyleSheet.create({
   },
   tabContainer: {
     flex: 3,
+  },
+  tabLabel: {
+    textTransform: 'none',
+  },
+  tab: {
+    backgroundColor: colors.lightBlue,
   },
 });

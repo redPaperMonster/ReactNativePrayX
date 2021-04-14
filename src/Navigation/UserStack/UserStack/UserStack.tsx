@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {UserStackStyles} from './UserStackStyles';
+import style from './UserStackStyles';
 import {UserStackProps} from '../../ScreensTypes';
 import {userRoutes} from '../../routes';
 import DeskDashboard from '../DeskDashboard/DeskDashboard';
@@ -15,7 +15,7 @@ const UserStack: React.FC<UserStackProps> = ({route, navigation}) => {
   return (
     <View>
       <NavigationContainer independent>
-        <View style={UserStackStyles.sectionContainer}>
+        <View style={style.container}>
           <Stack.Navigator initialRouteName={userRoutes.DeskDashboard}>
             <Stack.Screen
               name={userRoutes.DeskDashboard}

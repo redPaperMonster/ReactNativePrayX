@@ -1,10 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
-import {AuthStackStyles} from './AuthStackStyles';
+import style from './AuthStackStyles';
 import {AuthProps, TabsStackParamList} from '../../ScreensTypes';
 import {authRoutes} from '../../routes';
 
@@ -12,17 +12,33 @@ const Tab = createMaterialTopTabNavigator<TabsStackParamList>();
 
 const AuthStack: React.FC<AuthProps> = ({route, navigation}) => {
   return (
-    <View style={AuthStackStyles.container}>
-      <View style={AuthStackStyles.textContainer}>
-        <Text style={AuthStackStyles.sectionText}>Hello!</Text>
-        <Text style={AuthStackStyles.sectionText}>
+    <View style={style.container}>
+      <Button
+        title="next"
+        onPress={() => {
+          navigation.navigate('UserStack');
+        }}></Button>
+      <View style={style.textContainer}>
+        <Text style={style.sectionText}>
           To continue using the app log in or register
         </Text>
       </View>
-      <View style={AuthStackStyles.tabContainer}>
-        <Tab.Navigator>
-          <Tab.Screen name={authRoutes.SignIn} component={SignIn} />
-          <Tab.Screen name={authRoutes.SignUp} component={SignUp} />
+      <View style={style.tabContainer}>
+        <Tab.Navigator
+          tabBarOptions={{
+            labelStyle: {...style.tabLabel},
+            indicatorStyle: {...style.tab},
+          }}>
+          <Tab.Screen
+            name={authRoutes.SignIn}
+            component={SignIn}
+            options={{title: 'Sign in'}}
+          />
+          <Tab.Screen
+            name={authRoutes.SignUp}
+            component={SignUp}
+            options={{title: 'Sign up'}}
+          />
         </Tab.Navigator>
       </View>
     </View>

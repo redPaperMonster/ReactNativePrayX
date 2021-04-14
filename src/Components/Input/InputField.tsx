@@ -1,42 +1,48 @@
-import React, { Props } from 'react';
-import { FieldInputProps, FieldMetaState, FieldRenderProps } from 'react-final-form';
+import React from 'react';
+import {FieldRenderProps} from 'react-final-form';
 import {
-    KeyboardTypeOptions,
-    StyleSheet,
-    Text,
-    View,
-    TextInput
+  KeyboardTypeOptions,
+  Text,
+  View,
+  TextInput,
+  ViewStyle,
 } from 'react-native';
-
+import style from './InputFieldStyles';
 
 interface InputProps extends FieldRenderProps<string> {
-    meta: FieldMetaState<string>;
-    input: FieldInputProps<string, HTMLElement>;
-    placeholder?: string,
-    keyboardType?: KeyboardTypeOptions
+  keyboardType?: KeyboardTypeOptions;
+  label?: string;
+  placeholder?: string;
+  customStyle?: ViewStyle | ViewStyle[];
+  icon?: Element;
 }
 
-const InputField: React.FC<InputProps> = ({ input, meta, placeholder, keyboardType }) => {
-    return (
-        <View >
-            <TextInput
-                placeholder={placeholder}
-                keyboardType={keyboardType}
-                onChangeText={input.onChange} />
-            {meta && meta.touched && meta.error && (
-                <Text >{meta.error}</Text>
-            )
-            }
-        </View >
-    );
+const InputField: React.FC<InputProps> = ({
+  input,
+  meta,
+  keyboardType,
+  label,
+  placeholder = '',
+  customStyle,
+  icon,
+}) => {
+  return (
+    <View style={style.container}>
+      {label && <Text style={style.label}>{label}</Text>}
+      <View style={style.inputWrapper}>
+        <View style={style.icon}>{icon}</View>
+        <TextInput
+          style={[style.input, customStyle]}
+          keyboardType={keyboardType}
+          onChangeText={input.onChange}
+          placeholder={placeholder}
+        />
+      </View>
+      {meta && meta.touched && meta.error && (
+        <Text style={style.errorText}>{meta.error}</Text>
+      )}
+    </View>
+  );
 };
-
-const styles = StyleSheet.create({
-    sectionText: {
-        fontSize: 10,
-        textAlign: 'center',
-        color: 'red',
-    },
-})
 
 export default InputField;

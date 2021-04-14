@@ -1,12 +1,13 @@
 import {StyleSheet} from 'react-native';
 
-export const DeskDashboardStyles = StyleSheet.create({
+export default StyleSheet.create({
   sectionText: {
     fontSize: 17,
     fontWeight: '600',
     textAlign: 'center',
     color: '#514D47',
     lineHeight: 20,
+    fontFamily: 'PoppinsRegular',
   },
   container: {
     flex: 1,
