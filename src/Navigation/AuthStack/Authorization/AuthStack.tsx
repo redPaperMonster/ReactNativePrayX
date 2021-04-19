@@ -13,11 +13,6 @@ const Tab = createMaterialTopTabNavigator<TabsStackParamList>();
 const AuthStack: React.FC<AuthProps> = ({route, navigation}) => {
   return (
     <View style={style.container}>
-      <Button
-        title="next"
-        onPress={() => {
-          navigation.navigate('UserStack');
-        }}></Button>
       <View style={style.textContainer}>
         <Text style={style.sectionText}>
           To continue using the app log in or register

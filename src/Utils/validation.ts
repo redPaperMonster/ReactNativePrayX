@@ -1,3 +1,6 @@
+import { AxiosResponse } from "axios";
+import { userActions } from "../Store/Authorization/userSlice";
+import fetchAPI from './fetchService'
 export const validation = {
   fieldRequired: (value: string) => {
     if (typeof value === 'string') {
@@ -34,4 +37,36 @@ export const validation = {
     }
     return 'Name required';
   },
+};
+
+const submit = async (response: AxiosResponse) => {
+  if (response.data.message) {
+    throw {formError: 'data is incorrect, please try again'};
+  }
+  return response;
+};
+
+export const asyncSubmissionMiddleware = (store: {
+  dispatch: (arg0: {type: string; payload: any}) => any;
+}) => (next: (arg0: any) => any) => async (action: {
+  type: string;
+  payload: {email: string; password: string};
+}) => {
+  if (action && action.type === userActions.signIn.type) {
+    const response: AxiosResponse = await fetchAPI.signIn(
+      action.payload.email,
+      action.payload.password,
+    );
+    submit(response)
+      .then(res =>
+        store.dispatch({
+          type: userActions.signInSuccess.type,
+          payload: res,
+        }),
+      )
+      .catch(error =>
+        store.dispatch({type: userActions.signInSuccess.type, payload: error}),
+      );
+  }
+  return next(action);
 };
