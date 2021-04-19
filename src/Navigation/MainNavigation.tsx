@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Text, View} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import UserStack from './UserStack';
@@ -7,9 +7,7 @@ import AuthStack from './AuthStack';
 import style from './MainNavigationStyles';
 import {RootStackParamList} from './ScreensTypes';
 import {RootRoutes} from './routes';
-import {API} from '../Utils';
 import {useDispatch, useSelector} from 'react-redux';
-import {userActions} from '../Store/Authorization/userSlice';
 import {userSelectors} from '../Store';
 
 const MainNavigation = () => {

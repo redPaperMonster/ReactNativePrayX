@@ -1,8 +1,7 @@
 import {configureStore, MiddlewareArray} from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './Authorization/saga';
+import {rootSaga, userReducer} from './Authorization/';
 import createReduxPromiseListener from 'redux-promise-listener';
-import userReducer from './Authorization/userSlice';
 import {asyncSubmissionMiddleware} from '../Utils/validation';
 
 const sagaMiddleware = createSagaMiddleware();

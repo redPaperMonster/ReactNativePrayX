@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Image, Text, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {userActions} from '../../../Store/Authorization/userSlice';
 import {userRoutes} from '../../routes';
