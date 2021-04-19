@@ -1,6 +1,7 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {Button} from '../../../Components';
 import {userActions} from '../../../Store/Authorization/userSlice';
 import {userRoutes} from '../../routes';
 import {DeskDashboardProps} from '../../ScreensTypes';
@@ -18,16 +19,11 @@ const DeskDashboard: React.FC<DeskDashboardProps> = ({navigation, route}) => {
       </View>
       <View style={style.todoContainer}></View>
       <Button
-        title="open some TaskList"
-        onPress={() => navigation.navigate(userRoutes.TaskList)}></Button>
-      <Button
-        title="open Task details"
-        onPress={() => navigation.navigate(userRoutes.TaskDetails)}></Button>
-      <Button
         title="log out"
         onPress={() => {
           dispatch(userActions.logOut());
-        }}></Button>
+        }}
+      />
     </View>
   );
 };

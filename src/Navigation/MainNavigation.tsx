@@ -15,8 +15,10 @@ const MainNavigation = () => {
   const dispatch = useDispatch();
   const isLoaded = useSelector(userSelectors.getDataLoaded());
   const token = useSelector(userSelectors.getToken());
-
-  return isLoaded ? (
+  if (!isLoaded) {
+    return <Text>LOADING</Text>;
+  }
+  return (
     <View>
       <NavigationContainer>
         <View style={style.container}>
@@ -24,7 +26,7 @@ const MainNavigation = () => {
             screenOptions={{
               headerShown: false,
             }}>
-            {token === '' ? (
+            {!token ? (
               <Stack.Screen name={RootRoutes.AuthStack} component={AuthStack} />
             ) : (
               <Stack.Screen name={RootRoutes.UserStack} component={UserStack} />
@@ -33,8 +35,6 @@ const MainNavigation = () => {
         </View>
       </NavigationContainer>
     </View>
-  ) : (
-    <Text>LOADING</Text>
   );
 };
 export default MainNavigation;

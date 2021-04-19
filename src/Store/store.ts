@@ -7,7 +7,6 @@ import {asyncSubmissionMiddleware} from '../Utils/validation';
 const sagaMiddleware = createSagaMiddleware();
 const reduxPromiseListener = createReduxPromiseListener();
 
-const a = reduxPromiseListener.middleware;
 export const store = configureStore({
   reducer: {
     userData: userReducer,

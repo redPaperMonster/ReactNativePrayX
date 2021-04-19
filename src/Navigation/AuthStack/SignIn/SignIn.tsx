@@ -8,6 +8,7 @@ import style from './SignInStyles';
 import MakeAsyncFunction from 'react-redux-promise-listener';
 import {promiseListener, userActions} from '../../../Store/';
 import {FormApi, SubmissionErrors} from 'final-form';
+import fetchService from '../../../Utils/fetchService';
 interface Values {
   email: string;
   password: string;
@@ -71,6 +72,7 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
                 </Field>
                 <SubmitError name="formError" />
                 <Button onPress={handleSubmit} title="Sign in" />
+                <Button title="ddas" onPress={fetchService.getColumns} />
               </View>
             )}
           </Form>
