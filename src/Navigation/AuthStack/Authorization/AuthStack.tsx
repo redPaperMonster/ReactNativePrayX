@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-
+import {Text, View} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';

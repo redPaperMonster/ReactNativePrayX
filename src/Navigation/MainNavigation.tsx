@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Text, View} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import UserStack from './UserStack';
@@ -7,18 +7,17 @@ import AuthStack from './AuthStack';
 import style from './MainNavigationStyles';
 import {RootStackParamList} from './ScreensTypes';
 import {RootRoutes} from './routes';
-import {API} from '../Utils';
-import {useDispatch, useSelector} from 'react-redux';
-import {userActions} from '../Store/Authorization/userSlice';
+import {useSelector} from 'react-redux';
 import {userSelectors} from '../Store';
 
 const MainNavigation = () => {
   const Stack = createStackNavigator<RootStackParamList>();
-  const dispatch = useDispatch();
   const isLoaded = useSelector(userSelectors.getDataLoaded());
   const token = useSelector(userSelectors.getToken());
-
-  return isLoaded ? (
+  if (!isLoaded) {
+    return <Text>LOADING</Text>;
+  }
+  return (
     <View>
       <NavigationContainer>
         <View style={style.container}>
@@ -26,7 +25,7 @@ const MainNavigation = () => {
             screenOptions={{
               headerShown: false,
             }}>
-            {token === '' ? (
+            {!token ? (
               <Stack.Screen name={RootRoutes.AuthStack} component={AuthStack} />
             ) : (
               <Stack.Screen name={RootRoutes.UserStack} component={UserStack} />
@@ -35,8 +34,6 @@ const MainNavigation = () => {
         </View>
       </NavigationContainer>
     </View>
-  ) : (
-    <Text>LOADING</Text>
   );
 };
 export default MainNavigation;

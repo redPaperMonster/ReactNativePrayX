@@ -1,24 +1,22 @@
-import {API, AsyncAPI} from '../../Utils';
+import {API, storageService} from '../../Utils';
 import {put, takeEvery, all} from 'redux-saga/effects';
 import {userActions} from './userSlice';
 import {AxiosResponse} from 'axios';
+import {AnyAction} from 'redux';
 
-export function* signInWatcher() {
-  yield takeEvery(userActions.signInSuccess.type, signInSaga);
-}
-
-export function* signInSaga({payload}: any) {
+export function* signInSaga({payload}: AnyAction) {
   if (payload.data) {
-    yield AsyncAPI.setToken(payload.data.token);
-    yield AsyncAPI.setName(payload.data.name);
-    yield put({type: userActions.setName.type, payload: payload.data.name});
-    yield put({type: userActions.setToken.type, payload: payload.data.token});
+    const {token, name} = payload.data;
+    yield storageService.setToken(token);
+    yield storageService.setName(name);
+    yield put({type: userActions.setName.type, payload: name});
+    yield put({type: userActions.setToken.type, payload: token});
   }
 }
 
 export function* startApp() {
-  const token: AxiosResponse = yield AsyncAPI.getToken();
-  const name: AxiosResponse = yield AsyncAPI.getName();
+  const token: AxiosResponse = yield storageService.getToken();
+  const name: AxiosResponse = yield storageService.getName();
   if (name) {
     yield put({type: userActions.setName.type, payload: name});
   }
@@ -29,35 +27,28 @@ export function* startApp() {
 }
 
 export function* logOutSaga() {
-  yield AsyncAPI.setToken('');
-  yield AsyncAPI.setName('');
+  yield storageService.setToken('');
+  yield storageService.setName('');
 }
 
-export function* logOutWatcher() {
+export function* signUpSaga({payload}: AnyAction) {
+  const {name, token} = yield API.signUp({
+    name: payload.name,
+    email: payload.email,
+    password: payload.password,
+  });
+  yield put({type: userActions.setName.type, payload: name});
+  yield put({type: userActions.setToken.type, payload: token});
+  yield storageService.setToken(token);
+  yield storageService.setName(name);
+}
+
+function* watchers() {
+  yield takeEvery(userActions.signUp, signUpSaga);
+  yield takeEvery(userActions.signInSuccess.type, signInSaga);
   yield takeEvery(userActions.logOut.type, logOutSaga);
 }
 
-export function* signUpSaga({payload}: any) {
-  const response: AxiosResponse = yield API.signUp(
-    payload.name,
-    payload.email,
-    payload.password,
-  );
-  yield put({type: userActions.setName.type, payload: response.data.name});
-  yield put({type: userActions.setToken.type, payload: response.data.token});
-  yield AsyncAPI.setToken(response.data.token);
-  yield AsyncAPI.setName(response.data.name);
-}
-
-export function* registrationWatcher() {
-  yield takeEvery(userActions.signUp.type, signUpSaga);
-}
-
 export default function* rootSaga() {
-  yield all([
-    signInWatcher(),
-    startApp(),
-    logOutWatcher(),
-    registrationWatcher(),
-  ]);
+  yield all([watchers(), startApp()]);
 }

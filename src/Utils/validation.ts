@@ -1,6 +1,6 @@
-import { AxiosResponse } from "axios";
-import { userActions } from "../Store/Authorization/userSlice";
-import fetchAPI from './fetchService'
+import {AxiosResponse} from 'axios';
+import {userActions} from '../Store/Authorization/userSlice';
+import fetchAPI from './fetchService';
 export const validation = {
   fieldRequired: (value: string) => {
     if (typeof value === 'string') {
@@ -53,10 +53,10 @@ export const asyncSubmissionMiddleware = (store: {
   payload: {email: string; password: string};
 }) => {
   if (action && action.type === userActions.signIn.type) {
-    const response: AxiosResponse = await fetchAPI.signIn(
-      action.payload.email,
-      action.payload.password,
-    );
+    const response: AxiosResponse = await fetchAPI.signIn({
+      email: action.payload.email,
+      password: action.payload.password,
+    });
     submit(response)
       .then(res =>
         store.dispatch({

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
-import {Button, Text, View} from 'react-native';
+import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {InputField} from '../../../Components';
+import {InputField, Button} from '../../../Components';
 import {userActions} from '../../../Store/Authorization/userSlice';
 import {validation} from '../../../Utils';
 import {SignUpProps} from '../../ScreensTypes';

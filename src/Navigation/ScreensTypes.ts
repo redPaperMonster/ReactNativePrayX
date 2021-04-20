@@ -18,14 +18,14 @@ export type UserStackProps = StackScreenProps<
 >;
 
 export type UserStackParamList = {
-  DeskDashboard: undefined;
+  Dashboard: undefined;
   TaskList: undefined;
   TaskDetails: undefined;
 };
 
-export type DeskDashboardProps = StackScreenProps<
+export type DashboardProps = StackScreenProps<
   UserStackParamList,
-  userRoutes.DeskDashboard
+  userRoutes.Dashboard
 >;
 
 export type TaskListProps = StackScreenProps<

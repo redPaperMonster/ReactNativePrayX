@@ -1,26 +1,18 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
-import {Button, Text, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {InputField} from '../../../Components';
-import {userActions} from '../../../Store/Authorization/userSlice';
-import {AsyncAPI, validation} from '../../../Utils';
+import {Text, View} from 'react-native';
+import {Button, InputField} from '../../../Components';
+import {validation} from '../../../Utils';
 import {SignInProps} from '../../ScreensTypes';
 import style from './SignInStyles';
 import MakeAsyncFunction from 'react-redux-promise-listener';
-import {promiseListener} from '../../../Store/store';
+import {promiseListener, userActions} from '../../../Store/';
 import {FormApi, SubmissionErrors} from 'final-form';
-interface Values {
-  email: string;
-  password: string;
+interface SubmitError {
+  name: string;
 }
 
 const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
-  const dispatch = useDispatch();
-
-  interface SubmitError {
-    name: string;
-  }
   const SubmitError = ({name}: SubmitError) => (
     <Field
       name={name}
@@ -74,8 +66,7 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
                   )}
                 </Field>
                 <SubmitError name="formError" />
-
-                <Button title="submit" onPress={handleSubmit}></Button>
+                <Button onPress={handleSubmit} title="Sign in" />
               </View>
             )}
           </Form>
