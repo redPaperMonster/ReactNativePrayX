@@ -1,12 +1,15 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import {MainNavigation} from './src/Navigation';
-import DeskDashboard from './src/Navigation/UserStack/DeskDashboard/DeskDashboard';
+import {Provider} from 'react-redux';
+import {store} from './src/Store/store';
 
 const App = () => {
   return (
     <View>
-      <MainNavigation />
+      <Provider store={store}>
+        <MainNavigation />
+      </Provider>
     </View>
   );
 };

@@ -1,8 +1,4 @@
-export {getColumns, signIn, signUp} from './APIService';
-export {
-  fieldRequired,
-  emailValidate,
-  passwordValidation,
-  nameValidation,
-} from './validation';
+export {default as API} from './fetchService';
+export {default as storageService} from './AsyncStorageService';
+export {validation} from './validation';
 export {colors} from './colors';

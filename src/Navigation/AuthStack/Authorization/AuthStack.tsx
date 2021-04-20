@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
-
+import {Text, View} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
@@ -13,11 +12,6 @@ const Tab = createMaterialTopTabNavigator<TabsStackParamList>();
 const AuthStack: React.FC<AuthProps> = ({route, navigation}) => {
   return (
     <View style={style.container}>
-      <Button
-        title="next"
-        onPress={() => {
-          navigation.navigate('UserStack');
-        }}></Button>
       <View style={style.textContainer}>
         <Text style={style.sectionText}>
           To continue using the app log in or register

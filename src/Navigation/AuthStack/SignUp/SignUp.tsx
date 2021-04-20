@@ -1,20 +1,22 @@
 import React from 'react';
 import {Field, Form} from 'react-final-form';
 import {View} from 'react-native';
-import {Button, InputField} from '../../../Components';
-import {signIn, fieldRequired} from '../../../Utils';
+import {useDispatch} from 'react-redux';
+import {InputField, Button} from '../../../Components';
+import {userActions} from '../../../Store/Authorization/userSlice';
+import {validation} from '../../../Utils';
 import {SignUpProps} from '../../ScreensTypes';
 import style from './SignUpStyles';
-
 interface Values {
+  name: string;
   email: string;
   password: string;
 }
 
 const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
+  const dispatch = useDispatch();
   const handleSubmit = (values: Values) => {
-    signIn(values.email, values.password);
-    navigation.dangerouslyGetParent()?.navigate('UserStack');
+    dispatch(userActions.signUp(values));
   };
 
   return (
@@ -22,7 +24,18 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
       <Form onSubmit={handleSubmit}>
         {({handleSubmit}) => (
           <View>
-            <Field name="email" validate={fieldRequired}>
+            <Field name="name" validate={validation.nameValidation}>
+              {props => (
+                <View>
+                  <InputField
+                    {...props}
+                    label="Your name"
+                    customStyle={{borderBottomWidth: 1}}
+                  />
+                </View>
+              )}
+            </Field>
+            <Field name="email" validate={validation.emailValidate}>
               {props => (
                 <View>
                   <InputField
@@ -34,7 +47,7 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
                 </View>
               )}
             </Field>
-            <Field name="password" validate={fieldRequired}>
+            <Field name="password" validate={validation.passwordValidation}>
               {props => (
                 <View>
                   <InputField

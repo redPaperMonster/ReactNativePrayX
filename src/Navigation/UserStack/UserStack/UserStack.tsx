@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import style from './UserStackStyles';
 import {UserStackProps} from '../../ScreensTypes';
 import {userRoutes} from '../../routes';
-import DeskDashboard from '../DeskDashboard/DeskDashboard';
+import Dashboard from '../Dashboard/Dashboard';
 import TaskDetails from '../TaskDetails/TaskDetails';
 import TaskList from '../TaskListScreen/TaskListScreen';
 
@@ -16,11 +16,8 @@ const UserStack: React.FC<UserStackProps> = ({route, navigation}) => {
     <View>
       <NavigationContainer independent>
         <View style={style.container}>
-          <Stack.Navigator initialRouteName={userRoutes.DeskDashboard}>
-            <Stack.Screen
-              name={userRoutes.DeskDashboard}
-              component={DeskDashboard}
-            />
+          <Stack.Navigator initialRouteName={userRoutes.Dashboard}>
+            <Stack.Screen name={userRoutes.Dashboard} component={Dashboard} />
             <Stack.Screen name={userRoutes.TaskList} component={TaskList} />
             <Stack.Screen
               name={userRoutes.TaskDetails}

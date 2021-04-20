@@ -1,54 +1,26 @@
-import {AxiosResponse} from 'axios';
-
-const axios = require('axios');
+import axios from 'axios';
 
 const config = {
   headers: {
-    Authorization: `Bearer 4135aa9dc1b842a653dea846903ddb95bfb8c5a10c504a7fa16e10bc31d1fdf0`,
+    Authorization: '',
   },
 };
+export class Service {
+  static service = axios.create();
 
-export const getColumns = (token: string) => {
-  axios
-    .get('https://prayer.herokuapp.com/columns', {
-      headers: {Authorization: `Bearer ${token}`},
-    })
-    .then(function (response: AxiosResponse) {
-      console.log(response.data);
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    })
-    .then(function () {});
-};
-
-export const signIn = (email: string, password: string) => {
-  axios
-    .post('https://prayer.herokuapp.com/auth/sign-in', {
-      email: email,
-      password: password,
-    })
-    .then(function (response: AxiosResponse) {
-      console.log(response.data);
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    })
-    .then(function () {});
-};
-
-export const signUp = (name: string, email: string, password: string) => {
-  axios
-    .post('https://prayer.herokuapp.com/auth/sign-up', {
-      email: email,
-      name: name,
-      password: password,
-    })
-    .then(function (response: AxiosResponse) {
-      console.log(response.data);
-    })
-    .catch(function (error: any) {
-      console.log(error);
-    })
-    .then(function () {});
-};
+  static async get(url: string, token: string) {
+    config.headers.Authorization = `Bearer ${token}`;
+    const responseData = this.service.get(url, config).catch((error: any) => {
+      switch (error.response.status) {
+        case 401:
+          console.log(`401`, error.response);
+          break;
+      }
+      return Promise.reject(error);
+    });
+    return responseData;
+  }
+  static async post(url: string, payload: any) {
+    return await this.service.post(url, payload);
+  }
+}
