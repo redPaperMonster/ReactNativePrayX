@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -17,7 +17,11 @@ const UserStack: React.FC<UserStackProps> = ({route, navigation}) => {
       <NavigationContainer independent>
         <View style={style.container}>
           <Stack.Navigator initialRouteName={userRoutes.Dashboard}>
-            <Stack.Screen name={userRoutes.Dashboard} component={Dashboard} />
+            <Stack.Screen
+              name={userRoutes.Dashboard}
+              component={Dashboard}
+              options={{headerShown: false}}
+            />
             <Stack.Screen name={userRoutes.TaskList} component={TaskList} />
             <Stack.Screen
               name={userRoutes.TaskDetails}
