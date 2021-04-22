@@ -36,6 +36,7 @@ const InputField: React.FC<InputProps> = ({
           keyboardType={keyboardType}
           onChangeText={input.onChange}
           placeholder={placeholder}
+          value={input.value}
         />
       </View>
       {meta && meta.touched && meta.error && (

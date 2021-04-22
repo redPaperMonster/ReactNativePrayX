@@ -2,6 +2,7 @@ import {RouteProp} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {MaterialTopTabNavigationProp} from '@react-navigation/material-top-tabs';
 import {authRoutes, RootRoutes, userRoutes} from './routes';
+import {ColumnType} from '../Store';
 
 export type RootStackParamList = {
   AuthStack: undefined;
@@ -19,7 +20,7 @@ export type UserStackProps = StackScreenProps<
 
 export type UserStackParamList = {
   Dashboard: undefined;
-  TaskList: undefined;
+  TaskList: {column: ColumnType};
   TaskDetails: undefined;
 };
 

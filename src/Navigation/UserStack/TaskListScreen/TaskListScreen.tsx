@@ -6,6 +6,7 @@ const TaskList: React.FC<TaskListProps> = ({navigation, route}) => {
   return (
     <View>
       <Text>TaskList Here!</Text>
+      <Text>{route.params.column.title}</Text>
     </View>
   );
 };

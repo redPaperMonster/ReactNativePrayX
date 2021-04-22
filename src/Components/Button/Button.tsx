@@ -1,24 +1,27 @@
 import React from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 import style from './ButtonStyles';
 
 interface ButtonProps {
   onPress: () => void;
-  title: string;
+  title?: string;
   customStyle?: ViewStyle;
+  icon?: Element;
 }
 
-const Button: React.FC<ButtonProps> = ({onPress, title, customStyle}) => {
+const Button: React.FC<ButtonProps> = ({
+  onPress,
+  title = '',
+  customStyle,
+  icon,
+}) => {
   return (
     <TouchableOpacity style={[style.button, customStyle]} onPress={onPress}>
-      <Text style={style.text}>{title}</Text>
+      {icon ? (
+        <View style={style.icon}>{icon}</View>
+      ) : (
+        <Text style={style.text}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 };
