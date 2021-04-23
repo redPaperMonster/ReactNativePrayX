@@ -66,11 +66,10 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     paddingLeft: 20,
     height: 60,
-    marginVertical: 2,
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
     height: 64,
     borderBottomWidth: 1,
@@ -79,7 +78,9 @@ export default StyleSheet.create({
   },
   title: {
     fontFamily: 'PoppinsRegular',
-    paddingRight: '35%',
     fontSize: 17,
+  },
+  icon: {
+    marginRight: 20,
   },
 });

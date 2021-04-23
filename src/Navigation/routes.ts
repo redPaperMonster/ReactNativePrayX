@@ -13,3 +13,8 @@ export enum RootRoutes {
   AuthStack = 'AuthStack',
   UserStack = 'UserStack',
 }
+
+export enum TasksRoutes {
+  Prayers = 'Prayers',
+  Subscribed = 'Subscribed',
+}

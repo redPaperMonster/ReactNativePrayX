@@ -5,13 +5,13 @@ import {useDispatch} from 'react-redux';
 import {Button, InputField, Modal} from '../../Components';
 import {ColumnType, columnActions} from '../../Store/';
 import {validation} from '../../Utils';
-
+import style from './ColumnModalStyles';
 interface ColumnModalProps {
   visible: boolean;
   close: () => void;
   currentColumn?: ColumnType;
 }
-interface Values {
+interface ColumnModalValues {
   title: string;
   description: string;
 }
@@ -21,7 +21,7 @@ const ColumnModal: React.FC<ColumnModalProps> = ({
   currentColumn,
 }) => {
   const dispatch = useDispatch();
-  const handleSubmit = (values: Values) => {
+  const handleSubmit = (values: ColumnModalValues) => {
     if (currentColumn) {
       dispatch(columnActions.editColumn({id: currentColumn.id, ...values}));
       close();
@@ -35,26 +35,26 @@ const ColumnModal: React.FC<ColumnModalProps> = ({
     <View>
       <Modal visible={visible} close={close}>
         <Form onSubmit={handleSubmit} initialValues={currentColumn || {}}>
-          {({handleSubmit, values}) => (
+          {({handleSubmit}) => (
             <View>
-              <Field name="title" validate={validation.fieldRequired}>
+              <Field name="title" validate={validation.required}>
                 {props => (
                   <View>
                     <InputField
                       {...props}
                       label="Column title"
-                      customStyle={{borderBottomWidth: 1}}
+                      customStyle={style.input}
                     />
                   </View>
                 )}
               </Field>
-              <Field name="description" validate={validation.fieldRequired}>
+              <Field name="description" validate={validation.required}>
                 {props => (
                   <View>
                     <InputField
                       {...props}
                       label="Column description"
-                      customStyle={{borderBottomWidth: 1}}
+                      customStyle={style.input}
                     />
                   </View>
                 )}

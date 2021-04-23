@@ -2,7 +2,7 @@ import {AxiosResponse} from 'axios';
 import {userActions} from '../Store/Authorization/userSlice';
 import fetchAPI from './fetchService';
 export const validation = {
-  fieldRequired: (value: string) => {
+  required: (value: string) => {
     if (typeof value === 'string') {
       return value.trim() ? undefined : 'Required';
     }

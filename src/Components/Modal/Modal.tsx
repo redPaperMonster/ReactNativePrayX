@@ -15,11 +15,7 @@ const CustomModal: React.FC<ModalProps> = ({children, visible, close}) => {
         <View style={style.centeredView}>
           <View style={style.modalView}>
             <View style={style.closeButton}>
-              <Button
-                title="X"
-                onPress={() => close()}
-                customStyle={{paddingHorizontal: 10}}
-              />
+              <Button title="X" onPress={close} customStyle={style.button} />
             </View>
             <View style={style.children}>{children}</View>
           </View>

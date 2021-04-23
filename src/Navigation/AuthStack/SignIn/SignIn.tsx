@@ -47,20 +47,20 @@ const SignIn: React.FC<SignInProps> = ({navigation, route}) => {
                     <View>
                       <InputField
                         label="Your name"
-                        customStyle={{borderBottomWidth: 1}}
+                        customStyle={style.input}
                         keyboardType="email-address"
                         {...props}
                       />
                     </View>
                   )}
                 </Field>
-                <Field name="password" validate={validation.fieldRequired}>
+                <Field name="password" validate={validation.required}>
                   {props => (
                     <View>
                       <InputField
                         label="Your password"
                         {...props}
-                        customStyle={{borderBottomWidth: 1}}
+                        customStyle={style.input}
                       />
                     </View>
                   )}

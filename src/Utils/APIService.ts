@@ -9,7 +9,8 @@ const config = {
 export class Service {
   static service = axios.create();
 
-  static async get(url: string, token: string) {
+  static async get(url: string) {
+    const token = await AsyncStorage.getItem('token');
     config.headers.Authorization = `Bearer ${token}`;
     const responseData = this.service.get(url, config).catch((error: any) => {
       switch (error.response.status) {
@@ -26,11 +27,9 @@ export class Service {
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    const resp = await this.service
+    return await this.service
       .post(url, payload, config)
-      .catch(error => console.log(`error`, error));
-
-    return resp;
+      .catch(error => console.log(`error??????`, error));
   }
   static async put(url: string, payload: any) {
     const token = await AsyncStorage.getItem('token');

@@ -7,7 +7,7 @@ import {userActions} from '../../../Store/Authorization/userSlice';
 import {validation} from '../../../Utils';
 import {SignUpProps} from '../../ScreensTypes';
 import style from './SignUpStyles';
-interface Values {
+interface SignUpValues {
   name: string;
   email: string;
   password: string;
@@ -15,7 +15,7 @@ interface Values {
 
 const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
   const dispatch = useDispatch();
-  const handleSubmit = (values: Values) => {
+  const handleSubmit = (values: SignUpValues) => {
     dispatch(userActions.signUp(values));
   };
 
@@ -30,7 +30,7 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
                   <InputField
                     {...props}
                     label="Your name"
-                    customStyle={{borderBottomWidth: 1}}
+                    customStyle={style.input}
                   />
                 </View>
               )}
@@ -42,7 +42,7 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
                     label="Your email"
                     keyboardType="email-address"
                     {...props}
-                    customStyle={{borderBottomWidth: 1}}
+                    customStyle={style.input}
                   />
                 </View>
               )}
@@ -53,7 +53,7 @@ const SignUp: React.FC<SignUpProps> = ({navigation, route}) => {
                   <InputField
                     label="Your password"
                     {...props}
-                    customStyle={{borderBottomWidth: 1}}
+                    customStyle={style.input}
                   />
                 </View>
               )}

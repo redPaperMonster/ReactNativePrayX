@@ -4,11 +4,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button} from '../../../Components';
 import {DashboardProps} from '../../ScreensTypes';
 import styles from './DashboardStyles';
-import {columnSelectors, userActions, columnActions} from '../../../Store';
+import {
+  columnSelectors,
+  userActions,
+  columnActions,
+  taskActions,
+} from '../../../Store';
 import {SwipeListView, RowMap} from 'react-native-swipe-list-view';
 import {ColumnType} from '../../../Store/types';
 import ColumnModal from '../../../Modals/ColumnModal/ColumnModal';
-import {colors} from '../../../Utils';
 import {UnionIcon} from '../../../Assets/icons';
 
 const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
@@ -18,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
   const columns = useSelector(columnSelectors.getAllColumns());
 
   const renderHiddenItem = (
-    data: ListRenderItemInfo<ColumnType>,
+    {item}: ListRenderItemInfo<ColumnType>,
     rowMap: RowMap<ColumnType>,
   ) => (
     <View style={styles.rowsContainer}>
@@ -26,14 +30,14 @@ const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
         style={styles.editButton}
         onPress={() => {
           setModalVisible(true);
-          setCurrentColumn(data.item);
+          setCurrentColumn(item);
         }}>
         <Text style={[styles.backTextWhite]}>Edit</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.deleteButton}
-        onPress={() => dispatch(columnActions.deleteColumn(data.item.id))}>
+        onPress={() => dispatch(columnActions.deleteColumn(item.id))}>
         <Text style={[styles.backTextWhite]}>Delete</Text>
       </TouchableOpacity>
     </View>
@@ -42,31 +46,27 @@ const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <View style={styles.icon} />
         <Text style={styles.title}>My Desk</Text>
-        <Button
+        <TouchableOpacity
           onPress={() => {
             setModalVisible(true);
             setCurrentColumn(undefined);
           }}
-          customStyle={{
-            backgroundColor: colors.white,
-            marginRight: 20,
-          }}
-          icon={<UnionIcon />}
-        />
+          style={styles.icon}>
+          <UnionIcon />
+        </TouchableOpacity>
       </View>
 
       <SwipeListView
         data={columns}
-        renderItem={(data, rowMap) => (
+        renderItem={({item}, rowMap) => (
           <View style={styles.column}>
             <TouchableOpacity
-              key={data.item.id}
-              onPress={() =>
-                navigation.navigate('TaskList', {column: data.item})
-              }
+              key={item.id}
+              onPress={() => navigation.navigate('TaskList', {column: item})}
               style={styles.standaloneRowFront}>
-              <Text style={styles.sectionText}>{data.item.title}</Text>
+              <Text style={styles.sectionText}>{item.title}</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -81,7 +81,6 @@ const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
         close={() => setModalVisible(false)}
         currentColumn={currentColumn}
       />
-      <Button title="log out" onPress={() => dispatch(userActions.logOut())} />
     </View>
   );
 };

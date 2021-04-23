@@ -8,4 +8,7 @@ export default StyleSheet.create({
     paddingTop: 60,
     backgroundColor: '#FFFFFF',
   },
+  input: {
+    borderBottomWidth: 1,
+  },
 });

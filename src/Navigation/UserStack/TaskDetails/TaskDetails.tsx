@@ -5,7 +5,7 @@ import {TaskDetailsProps} from '../../ScreensTypes';
 const TaskDetails: React.FC<TaskDetailsProps> = ({navigation, route}) => {
   return (
     <View>
-      <Text> Task Details HERE</Text>
+      <Text>{route.params.task.title}</Text>
     </View>
   );
 };
