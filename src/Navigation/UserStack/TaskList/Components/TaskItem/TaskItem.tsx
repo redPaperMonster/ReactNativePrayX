@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {HandsIcon, MessageIcon} from '../../../../../Assets/icons';
 import {Checkbox} from '../../../../../Components';
 import {taskActions, TaskType} from '../../../../../Store';
-import Counter from '../Counters/Counter';
+import {Counter} from '../';
 import style from './TaskItemStyle';
 interface TaskItemProps {
   task: TaskType;

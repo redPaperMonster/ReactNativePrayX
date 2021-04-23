@@ -3,13 +3,13 @@ import React from 'react';
 import {View} from 'react-native';
 import {colors} from '../../../Utils';
 import {TasksRoutes} from '../../routes';
-import {TaskListProps, TaskTabsStackParamList} from '../../ScreensTypes';
+import {TaskStackProps, TaskTabsStackParamList} from '../../ScreensTypes';
 import {Prayers, Subscribed} from './Screens';
-import style from './TaskListStyles';
+import style from './TaskStackStyles';
 
 const Tab = createMaterialTopTabNavigator<TaskTabsStackParamList>();
 
-const TaskList: React.FC<TaskListProps> = ({navigation, route}) => {
+const TaskList: React.FC<TaskStackProps> = ({navigation, route}) => {
   React.useEffect(() => {
     navigation.setOptions({headerTitle: route.params.column.title});
   }, []);

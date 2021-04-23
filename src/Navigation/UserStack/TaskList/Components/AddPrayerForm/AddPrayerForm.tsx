@@ -5,7 +5,6 @@ import {useDispatch} from 'react-redux';
 import {UnionIcon} from '../../../../../Assets/icons';
 import {InputField} from '../../../../../Components';
 import {taskActions} from '../../../../../Store/Tasks';
-import {validation} from '../../../../../Utils';
 import style from './AddPrayerStyles';
 interface AddPrayerProps {
   columnId: number;
@@ -13,7 +12,7 @@ interface AddPrayerProps {
 const AddPrayer: React.FC<AddPrayerProps> = ({columnId}) => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values: {title: string}) => {
+  const handleSubmit = (values: {title: string}, form: {reset: () => void}) => {
     const task = {
       title: values.title,
       description: '',
@@ -21,30 +20,27 @@ const AddPrayer: React.FC<AddPrayerProps> = ({columnId}) => {
     };
     dispatch(taskActions.createTask({task: task, columnId: columnId}));
     Keyboard.dismiss();
+    form.reset();
   };
   return (
     <View style={style.container}>
       <Form onSubmit={handleSubmit}>
-        {({handleSubmit, form}) => (
+        {({handleSubmit, values}) => (
           <View style={style.formContainer}>
             <View style={style.buttonWrapper}>
               <TouchableOpacity
-                onPress={() => {
-                  handleSubmit();
-                  form.reset();
-                  Keyboard.dismiss();
-                }}>
+                disabled={!!!values.title}
+                onPress={handleSubmit}>
                 <UnionIcon />
               </TouchableOpacity>
             </View>
             <View style={style.fieldWrapper}>
-              <Field name="title" validate={validation.required}>
+              <Field name="title">
                 {props => (
                   <InputField
                     placeholder="Add a prayer..."
                     {...props}
                     customStyle={style.input}
-                    hideError
                   />
                 )}
               </Field>
@@ -57,6 +53,3 @@ const AddPrayer: React.FC<AddPrayerProps> = ({columnId}) => {
 };
 
 export default AddPrayer;
-function dismissKeyboard() {
-  throw new Error('Function not implemented.');
-}

@@ -7,7 +7,7 @@ import {UserStackProps} from '../../ScreensTypes';
 import {userRoutes} from '../../routes';
 import Dashboard from '../Dashboard/Dashboard';
 import TaskDetails from '../TaskDetails/TaskDetails';
-import TaskList from '../TaskList/TaskList';
+import TaskList from '../trash/TaskList';
 import {SettingsIcon} from '../../../Assets/icons';
 import {useDispatch} from 'react-redux';
 import {userActions} from '../../../Store';
@@ -25,7 +25,7 @@ const UserStack: React.FC<UserStackProps> = ({route, navigation}) => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name={userRoutes.TaskList}
+            name={userRoutes.TaskStack}
             component={TaskList}
             options={{
               headerTitleStyle: style.header,

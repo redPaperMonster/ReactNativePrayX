@@ -15,7 +15,6 @@ interface InputProps extends FieldRenderProps<string> {
   placeholder?: string;
   customStyle?: ViewStyle | ViewStyle[];
   icon?: Element;
-  hideError?: boolean;
 }
 
 const InputField: React.FC<InputProps> = ({
@@ -26,10 +25,9 @@ const InputField: React.FC<InputProps> = ({
   placeholder = '',
   customStyle,
   icon,
-  hideError,
 }) => {
   return (
-    <View style={style.container}>
+    <View>
       {label && <Text style={style.label}>{label}</Text>}
       <View style={style.inputWrapper}>
         <View style={style.icon}>{icon}</View>
@@ -41,7 +39,7 @@ const InputField: React.FC<InputProps> = ({
           value={input.value}
         />
       </View>
-      {meta && meta.touched && meta.error && !hideError && (
+      {meta && meta.touched && meta.error && (
         <Text style={style.errorText}>{meta.error}</Text>
       )}
     </View>

@@ -6,7 +6,7 @@ const config = {
     Authorization: '',
   },
 };
-export class Service {
+export class APIService {
   static service = axios.create();
 
   static async get(url: string) {

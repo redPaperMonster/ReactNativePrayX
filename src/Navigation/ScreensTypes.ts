@@ -20,7 +20,7 @@ export type UserStackProps = StackScreenProps<
 
 export type UserStackParamList = {
   Dashboard: undefined;
-  TaskList: {column: ColumnType};
+  TaskStack: {column: ColumnType};
   TaskDetails: {task: TaskType};
 };
 
@@ -29,9 +29,9 @@ export type DashboardProps = StackScreenProps<
   userRoutes.Dashboard
 >;
 
-export type TaskListProps = StackScreenProps<
+export type TaskStackProps = StackScreenProps<
   UserStackParamList,
-  userRoutes.TaskList
+  userRoutes.TaskStack
 >;
 
 export type TaskDetailsProps = StackScreenProps<

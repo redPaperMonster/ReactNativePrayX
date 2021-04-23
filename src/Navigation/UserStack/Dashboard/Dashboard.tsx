@@ -1,19 +1,14 @@
 import React, {useState} from 'react';
 import {ListRenderItemInfo, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {Button} from '../../../Components';
 import {DashboardProps} from '../../ScreensTypes';
 import styles from './DashboardStyles';
-import {
-  columnSelectors,
-  userActions,
-  columnActions,
-  taskActions,
-} from '../../../Store';
-import {SwipeListView, RowMap} from 'react-native-swipe-list-view';
+import {columnSelectors, columnActions} from '../../../Store';
+import {SwipeListView} from 'react-native-swipe-list-view';
 import {ColumnType} from '../../../Store/types';
 import ColumnModal from '../../../Modals/ColumnModal/ColumnModal';
 import {UnionIcon} from '../../../Assets/icons';
+import {userRoutes} from '../../routes';
 
 const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -21,10 +16,7 @@ const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
   const [currentColumn, setCurrentColumn] = useState<ColumnType>();
   const columns = useSelector(columnSelectors.getAllColumns());
 
-  const renderHiddenItem = (
-    {item}: ListRenderItemInfo<ColumnType>,
-    rowMap: RowMap<ColumnType>,
-  ) => (
+  const renderHiddenItem = ({item}: ListRenderItemInfo<ColumnType>) => (
     <View style={styles.rowsContainer}>
       <TouchableOpacity
         style={styles.editButton}
@@ -64,13 +56,15 @@ const Dashboard: React.FC<DashboardProps> = ({navigation, route}) => {
           <View style={styles.column}>
             <TouchableOpacity
               key={item.id}
-              onPress={() => navigation.navigate('TaskList', {column: item})}
+              onPress={() =>
+                navigation.navigate(userRoutes.TaskStack, {column: item})
+              }
               style={styles.standaloneRowFront}>
               <Text style={styles.sectionText}>{item.title}</Text>
             </TouchableOpacity>
           </View>
         )}
-        renderHiddenItem={renderHiddenItem}
+        renderHiddenItem={item => renderHiddenItem(item)}
         leftOpenValue={75}
         rightOpenValue={-75}
         stopLeftSwipe={75}

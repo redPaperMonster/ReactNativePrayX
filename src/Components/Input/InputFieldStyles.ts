@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../Utils';
 
 export default StyleSheet.create({
-  container: {},
   input: {
     padding: 0,
     color: colors.black,

@@ -1,6 +1,6 @@
 export enum userRoutes {
   Dashboard = 'Dashboard',
-  TaskList = 'TaskList',
+  TaskStack = 'TaskStack',
   TaskDetails = 'TaskDetails',
 }
 
