@@ -1,6 +1,6 @@
 export enum userRoutes {
   Dashboard = 'Dashboard',
-  TaskList = 'TaskList',
+  TaskStack = 'TaskStack',
   TaskDetails = 'TaskDetails',
 }
 
@@ -12,4 +12,9 @@ export enum authRoutes {
 export enum RootRoutes {
   AuthStack = 'AuthStack',
   UserStack = 'UserStack',
+}
+
+export enum TasksRoutes {
+  Prayers = 'Prayers',
+  Subscribed = 'Subscribed',
 }

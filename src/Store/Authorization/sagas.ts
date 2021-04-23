@@ -1,5 +1,5 @@
 import {fetchService, storageService} from '../../Utils';
-import {put, takeEvery, all} from 'redux-saga/effects';
+import {put, takeEvery} from 'redux-saga/effects';
 import {userActions, columnActions} from '../';
 import {AnyAction} from 'redux';
 import {AxiosResponse} from 'axios';

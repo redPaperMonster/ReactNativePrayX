@@ -5,7 +5,7 @@ import {ColumnType} from '../types';
 const store = (state: RootState) => state;
 export const columnSelectors = {
   getAllColumns: () => createSelector(store, state => state.columns),
-  getColumn: (id: string) =>
+  getColumnById: (id: string) =>
     createSelector(store, state =>
       state.columns.filter((item: ColumnType) => {
         return item.id === id && item;

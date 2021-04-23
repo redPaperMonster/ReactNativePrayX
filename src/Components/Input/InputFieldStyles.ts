@@ -2,14 +2,12 @@ import {StyleSheet} from 'react-native';
 import {colors} from '../../Utils';
 
 export default StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
   input: {
     padding: 0,
     color: colors.black,
     flex: 99,
     fontFamily: 'PoppinsRegular',
+    marginBottom: 5,
   },
   errorText: {
     fontWeight: 'bold',
@@ -17,7 +15,6 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   inputWrapper: {
-    marginBottom: 5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -26,6 +23,7 @@ export default StyleSheet.create({
     color: colors.black,
     textAlign: 'center',
     fontFamily: 'PoppinsBold',
+    paddingTop: 16,
   },
   icon: {flex: 1, right: 30},
 });

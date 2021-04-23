@@ -5,17 +5,19 @@ import createReduxPromiseListener from 'redux-promise-listener';
 import {asyncSubmissionMiddleware} from '../Utils/validation';
 import {columnReducer, columnsWatchers} from './Columns';
 import {all} from 'redux-saga/effects';
+import {taskReducer, tasksWatchers} from './Tasks/';
 
 const sagaMiddleware = createSagaMiddleware();
 const reduxPromiseListener = createReduxPromiseListener();
 function* rootSaga() {
-  yield all([...columnsWatchers, ...authWatchers]);
+  yield all([...columnsWatchers, ...authWatchers, ...tasksWatchers]);
 }
 
 export const store = configureStore({
   reducer: {
     userData: userReducer,
     columns: columnReducer,
+    tasks: taskReducer,
   },
   middleware: [
     sagaMiddleware,

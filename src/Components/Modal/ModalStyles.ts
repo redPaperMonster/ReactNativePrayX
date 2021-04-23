@@ -38,4 +38,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  button: {
+    paddingHorizontal: 10,
+  },
 });

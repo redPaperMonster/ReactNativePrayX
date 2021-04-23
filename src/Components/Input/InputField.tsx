@@ -27,7 +27,7 @@ const InputField: React.FC<InputProps> = ({
   icon,
 }) => {
   return (
-    <View style={style.container}>
+    <View>
       {label && <Text style={style.label}>{label}</Text>}
       <View style={style.inputWrapper}>
         <View style={style.icon}>{icon}</View>
