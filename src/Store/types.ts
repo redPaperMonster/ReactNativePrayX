@@ -15,3 +15,16 @@ export type TaskStateType = {
   data: TaskType[];
   dataLoaded: boolean;
 };
+
+export type CommentType = {
+  id: number;
+  body: string;
+  created: string;
+  prayerId: number;
+  userId: number;
+};
+
+export type CommentStateType = {
+  data: CommentType[];
+  dataLoaded: boolean;
+};
